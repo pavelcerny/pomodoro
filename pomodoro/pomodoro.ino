@@ -1,18 +1,27 @@
 // set pins for buzzer
 #define BUZZER 8
+#define CONTINUE_BUTTON 9
 
+int buttonContinueState = 0;
 
 void setup(){
  
   pinMode(BUZZER, OUTPUT); // Set buzzer - pin 9 as an output
+  pinMode(CONTINUE_BUTTON, INPUT);
 
 }
 
 void loop(){
- 
-  tone(BUZZER, 1000); // Send 1KHz sound signal...
-  delay(1000);        // ...for 1 sec
-  noTone(BUZZER);     // Stop sound...
-  delay(1000);        // ...for 1sec
 
-}
+  // read button state
+  buttonContinueState = digitalRead(CONTINUE_BUTTON);
+
+  if (buttonContinueState == HIGH) {
+        // produce sound:    
+        tone(BUZZER, 1000);
+    }
+    else {
+        // turn off sound
+        noTone(BUZZER);
+    }
+ }
