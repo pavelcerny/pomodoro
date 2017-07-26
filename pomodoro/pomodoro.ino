@@ -3,6 +3,7 @@
 #define CONTINUE_BUTTON 9
 
 int buttonContinueState = 0;
+int produceSound = 0;
 
 void setup(){
  
@@ -18,10 +19,17 @@ void loop(){
 
   if (buttonContinueState == HIGH) {
         // produce sound:    
-        tone(BUZZER, 1000);
+        produceSound = 1;
     }
     else {
         // turn off sound
-        noTone(BUZZER);
+        produceSound = 0;
     }
+
+  // ring the buzzer if needed
+  if (produceSound) {
+      tone(BUZZER, 1000);  
+  } else {
+      noTone(BUZZER);
+  }
  }
